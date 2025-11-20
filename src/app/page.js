@@ -8,7 +8,7 @@ import Hero from "../components/sections/Hero";
 import Problem from "../components/sections/Problem";
 import Solution from "../components/sections/Solution";
 import UseCases from "../components/sections/UseCases";
-import Credibility from "../components/sections/Credibility";
+import TutorialVideos from "../components/sections/TutorialVideos";
 import HowItWorks from "../components/sections/HowItWorks";
 import Tech from "../components/sections/Tech";
 import POC from "../components/sections/POC";
@@ -30,7 +30,7 @@ export default function Home() {
         <Problem />
         <Solution />
         <UseCases />
-        <Credibility />
+        <TutorialVideos />
         <HowItWorks />
         <Tech />
         <POC onBetaAccessClick={() => setShowBetaModal(true)} />
