@@ -1,4 +1,7 @@
+"use client";
+
 import Card from "../ui/Card";
+import FadeInSection from "../ui/FadeInSection";
 
 export default function Problem() {
   const problems = [
@@ -35,31 +38,37 @@ export default function Problem() {
     <section className="py-24 relative" id="problem">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Classical Computing Hits Its Limits
-          </h2>
-        </div>
+        <FadeInSection>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Classical Computing Hits Its Limits
+            </h2>
+          </div>
+        </FadeInSection>
 
         {/* Problem Cards */}
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {problems.map((problem, index) => (
-            <Card key={index}>
-              <div className="text-[#ea580b] mb-4">{problem.icon}</div>
-              <h3 className="text-xl font-bold text-white mb-3">{problem.title}</h3>
-              <p className="text-[#a3a3a3] leading-relaxed">{problem.description}</p>
-            </Card>
+            <FadeInSection key={index} delay={index * 100}>
+              <Card>
+                <div className="text-[#ea580b] mb-4">{problem.icon}</div>
+                <h3 className="text-xl font-bold text-white mb-3">{problem.title}</h3>
+                <p className="text-[#a3a3a3] leading-relaxed">{problem.description}</p>
+              </Card>
+            </FadeInSection>
           ))}
         </div>
 
         {/* Stats Bar */}
-        <div className="bg-[#111111] border border-[#262626] rounded-xl p-8">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <StatItem number="10,000+" label="devices" />
-            <StatItem number="10⁶" label="combinations" />
-            <StatItem number="<100ms" label="windows" />
+        <FadeInSection delay={400}>
+          <div className="bg-[#111111] border border-[#262626] rounded-xl p-8">
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <StatItem number="10,000+" label="devices" />
+              <StatItem number="10⁶" label="combinations" />
+              <StatItem number="<100ms" label="windows" />
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </div>
     </section>
   );

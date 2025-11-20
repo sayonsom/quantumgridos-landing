@@ -1,4 +1,7 @@
+"use client";
+
 import Card from "../ui/Card";
+import FadeInSection from "../ui/FadeInSection";
 
 export default function Solution() {
   const capabilities = [
@@ -20,42 +23,48 @@ export default function Solution() {
     <section className="py-24 bg-[#111111]/50" id="solution">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            The Missing Integration Layer
-          </h2>
-          <p className="text-lg text-[#a3a3a3] max-w-3xl mx-auto">
-            QuantumGrid OS bridges quantum processors and power system hardware. Built on R&D 100 Award-finalist research.
-          </p>
-        </div>
+        <FadeInSection>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              The Missing Integration Layer
+            </h2>
+            <p className="text-lg text-[#a3a3a3] max-w-3xl mx-auto">
+              QuantumGrid OS bridges quantum processors and power system hardware. Built on R&D 100 Award-finalist research.
+            </p>
+          </div>
+        </FadeInSection>
 
         {/* Architecture Diagram */}
-        <div className="mb-12 flex items-center justify-center">
-          <div className="flex items-center space-x-4 text-center">
-            <ArchBox label="Quantum" />
-            <Arrow />
-            <ArchBox label="QuantumGrid OS" primary />
-            <Arrow />
-            <ArchBox label="Your Systems" />
+        <FadeInSection delay={200}>
+          <div className="mb-12 flex items-center justify-center">
+            <div className="flex items-center space-x-4 text-center">
+              <ArchBox label="Quantum" />
+              <Arrow />
+              <ArchBox label="QuantumGrid OS" primary />
+              <Arrow />
+              <ArchBox label="Your Systems" />
+            </div>
           </div>
-        </div>
+        </FadeInSection>
 
         {/* Capability Cards */}
         <div className="grid md:grid-cols-3 gap-8">
           {capabilities.map((capability, index) => (
-            <Card key={index}>
-              <h3 className="text-xl font-bold text-white mb-4">{capability.title}</h3>
-              <ul className="space-y-2">
-                {capability.items.map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <svg className="w-5 h-5 text-[#22c55e] mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-[#a3a3a3]">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
+            <FadeInSection key={index} delay={index * 150}>
+              <Card>
+                <h3 className="text-xl font-bold text-white mb-4">{capability.title}</h3>
+                <ul className="space-y-2">
+                  {capability.items.map((item, i) => (
+                    <li key={i} className="flex items-start">
+                      <svg className="w-5 h-5 text-[#22c55e] mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-[#a3a3a3]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </FadeInSection>
           ))}
         </div>
       </div>

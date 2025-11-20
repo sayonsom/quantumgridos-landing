@@ -20,7 +20,7 @@ export default function Hero({ onBetaAccessClick }) {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Quantum Operating System for Power Grids
+                Connect your Power Grids
               </h1>
               <p className="text-lg text-[#a3a3a3] leading-relaxed">
                 Open-source bridge connecting quantum algorithms to RTDS, SCADA, and real-time energy infrastructure.
@@ -55,10 +55,22 @@ export default function Hero({ onBetaAccessClick }) {
 
             {/* Trust Badges */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8">
-              <TrustBadge icon="🏆" text="R&D 100 Finalist" />
-              <TrustBadge icon="⚡" text="Open Source" />
-              <TrustBadge icon="🔌" text="RTDS Compatible" />
-              <TrustBadge icon="🌐" text="Vendor Neutral" />
+              <TrustBadge
+                icon={<TrophyIcon />}
+                text="R&D 100 Finalist"
+              />
+              <TrustBadge
+                icon={<BoltIcon />}
+                text="Open Source"
+              />
+              <TrustBadge
+                icon={<PlugIcon />}
+                text="RTDS Compatible"
+              />
+              <TrustBadge
+                icon={<GlobeIcon />}
+                text="Vendor Neutral"
+              />
             </div>
           </div>
 
@@ -75,9 +87,41 @@ export default function Hero({ onBetaAccessClick }) {
 function TrustBadge({ icon, text }) {
   return (
     <div className="flex flex-col items-center text-center p-4 bg-[#111111]/50 rounded-lg border border-[#262626] backdrop-blur-sm">
-      <span className="text-2xl mb-2">{icon}</span>
+      <div className="text-[#ea580b] mb-2">{icon}</div>
       <span className="text-xs text-[#a3a3a3]">{text}</span>
     </div>
+  );
+}
+
+function TrophyIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+    </svg>
+  );
+}
+
+function BoltIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+  );
+}
+
+function PlugIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5v4m8-4v4M5 9h14m-7 4v8m-4 0h8" />
+    </svg>
+  );
+}
+
+function GlobeIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+    </svg>
   );
 }
 

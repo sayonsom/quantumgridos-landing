@@ -9,14 +9,25 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sen);
+  --font-sans: var(--font-visual-sans);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sen), sans-serif;
+  font-family: var(--font-visual-sans), sans-serif;
+  font-weight: 400;
   overflow-x: hidden;
+}
+
+/* Modern font weight utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p, .subtitle {
+  font-weight: 300;
 }
 
 * {
@@ -35,6 +46,15 @@ body {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes pulse-border {
   0%, 100% {
     opacity: 1;
@@ -42,4 +62,25 @@ body {
   50% {
     opacity: 0.8;
   }
+}
+
+/* Scroll animation utilities */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
 }

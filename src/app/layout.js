@@ -1,11 +1,11 @@
-import { Sen } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 
-const sen = Sen({
-  weight: ["400", "600", "700", "800"],
-  subsets: ["latin"],
-  variable: "--font-sen",
+const visualSans = localFont({
+  src: "../../public/WFVisualSansVF.woff2",
+  variable: "--font-visual-sans",
+  weight: "100 900",
 });
 
 export const metadata = {
@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={`${sen.variable} antialiased`}>
+      <body className={`${visualSans.variable} antialiased`}>
         {children}
       </body>
     </html>
