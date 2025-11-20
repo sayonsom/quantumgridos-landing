@@ -24,16 +24,13 @@ export default function HowItWorks() {
     }
   ];
 
-  const codeExample = `from quantumgrid import QuantumOptimizer
+  const codeExample = `import quantumgridos as qgo
 
-optimizer = QuantumOptimizer(
-    rtds="your-server",
-    backend="ibm_quantum"
-)
-
-solution = optimizer.optimize_dispatch(
-    objective="minimize_cost"
-)`;
+# Quick test
+network = qgo.PowerNetwork.from_ieee_case(14)
+optimizer = qgo.MaxCutOptimizer(network)
+result = optimizer.solve()
+print(f"Partition: {result['partition']}")`;
 
   return (
     <section className="py-24" id="how-it-works">
