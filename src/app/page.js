@@ -7,6 +7,7 @@ import Footer from "../components/layout/Footer";
 import Hero from "../components/sections/Hero";
 import Problem from "../components/sections/Problem";
 import Solution from "../components/sections/Solution";
+import UniqueValue from "../components/sections/UniqueValue";
 import UseCases from "../components/sections/UseCases";
 import TutorialVideos from "../components/sections/TutorialVideos";
 import HowItWorks from "../components/sections/HowItWorks";
@@ -29,6 +30,7 @@ export default function Home() {
         <Hero onBetaAccessClick={() => setShowBetaModal(true)} />
         <Problem />
         <Solution />
+        <UniqueValue />
         <UseCases />
         <TutorialVideos />
         <HowItWorks />
