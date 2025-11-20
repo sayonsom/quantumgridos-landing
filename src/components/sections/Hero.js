@@ -20,7 +20,7 @@ export default function Hero({ onBetaAccessClick }) {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Connect your Power Grids
+                Connect Power Grids to Quantum Computing
               </h1>
               <p className="text-lg text-[#a3a3a3] leading-relaxed">
                 Open-source bridge connecting quantum algorithms to RTDS, SCADA, and real-time energy infrastructure.
