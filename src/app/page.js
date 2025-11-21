@@ -16,6 +16,7 @@ import POC from "../components/sections/POC";
 import Install from "../components/sections/Install";
 import FAQ from "../components/sections/FAQ";
 import BetaAccessModal from "../components/ui/BetaAccessModal";
+import QuantumAnimation from "../components/ui/QuantumAnimation";
 
 export default function Home() {
   const [showBetaModal, setShowBetaModal] = useState(false);
@@ -30,6 +31,7 @@ export default function Home() {
         <Problem />
         <Solution />
         <UniqueValue />
+        <QuantumAnimation />
         <UseCases />
         <TutorialVideos />
         <HowItWorks />

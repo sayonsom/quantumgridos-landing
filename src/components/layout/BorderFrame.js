@@ -4,16 +4,16 @@ export default function BorderFrame() {
   return (
     <div className="hidden md:block fixed inset-0 pointer-events-none z-50">
       <div
-        className="absolute border-[20px] border-[#ea580b]"
+        className="absolute inset-0"
         style={{
-          animation: "pulse-border 3s ease-in-out infinite",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100vw',
-          height: '100vh',
-          boxSizing: 'border-box'
+          background: 'linear-gradient(90deg, #ea580b 0%, #ea580b 35%, #ea580b 42%, #a855f7 50%, #ea580b 58%, #ea580b 65%, #ea580b 100%)',
+          backgroundSize: '200% 200%',
+          animation: 'border-shine 16s ease-in-out infinite',
+          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'xor',
+          mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          maskComposite: 'exclude',
+          padding: '20px'
         }}
       />
     </div>
