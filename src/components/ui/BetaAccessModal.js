@@ -89,9 +89,9 @@ export default function BetaAccessModal({ isOpen, onClose }) {
       <div className="p-8">
         {!submitted ? (
           <>
-            <h2 className="text-2xl font-bold text-white mb-2">Request Beta Access</h2>
+            <h2 className="text-2xl font-bold text-white mb-2">Let's Do a Pilot Project</h2>
             <p className="text-[#a3a3a3] mb-6">
-              Join the waitlist for QuantumGrid OS beta program.
+              Partner with us for an enterprise pilot deployment.
             </p>
 
             {error && (

@@ -15,7 +15,6 @@ import Tech from "../components/sections/Tech";
 import POC from "../components/sections/POC";
 import Install from "../components/sections/Install";
 import FAQ from "../components/sections/FAQ";
-import Team from "../components/sections/Team";
 import BetaAccessModal from "../components/ui/BetaAccessModal";
 
 export default function Home() {
@@ -26,8 +25,8 @@ export default function Home() {
       <BorderFrame />
       <Header onBetaAccessClick={() => setShowBetaModal(true)} />
 
-      <main className="p-4 md:p-6">
-        <Hero onBetaAccessClick={() => setShowBetaModal(true)} />
+      <main className="px-4 py-4 md:px-8 md:py-6">
+        <Hero />
         <Problem />
         <Solution />
         <UniqueValue />
@@ -38,7 +37,6 @@ export default function Home() {
         <POC onBetaAccessClick={() => setShowBetaModal(true)} />
         <Install />
         <FAQ />
-        <Team />
       </main>
 
       <Footer />

@@ -32,7 +32,7 @@ export default function POC({ onBetaAccessClick }) {
             </ul>
             <Button
               variant="secondary"
-              onClick={() => window.open("https://github.com/quantumgrid/os", "_blank")}
+              onClick={() => window.open("https://github.com/saralsystems/quantumgridos", "_blank")}
               className="w-full"
               trackingEvent={{
                 action: 'click',
@@ -67,10 +67,10 @@ export default function POC({ onBetaAccessClick }) {
               trackingEvent={{
                 action: 'click',
                 category: 'conversion',
-                label: 'Apply for Partnership - POC',
+                label: 'Enterprise Pilot - POC',
               }}
             >
-              Apply for Partnership
+              Enterprise Pilot
             </Button>
           </Card>
         </div>

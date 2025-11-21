@@ -12,6 +12,12 @@ export const metadata = {
   title: "QuantumGrid OS - Quantum Computing for Power Grids",
   description: "Open-source integration layer connecting quantum algorithms to RTDS, SCADA, and grid infrastructure.",
   keywords: ["quantum power grid", "RTDS integration", "DER optimization", "utility computing"],
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
 };
 
 export default function RootLayout({ children }) {

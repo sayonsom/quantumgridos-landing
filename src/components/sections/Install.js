@@ -14,8 +14,8 @@ export default function Install() {
 
   const installations = {
     docker: "docker pull quantumgrid/os:latest",
-    python: "pip install quantumgrid-os",
-    source: "git clone https://github.com/quantumgrid/os"
+    python: "pip install quantumgridos",
+    source: "git clone https://github.com/saralsystems/quantumgridos"
   };
 
   const steps = [

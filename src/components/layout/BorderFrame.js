@@ -2,11 +2,18 @@
 
 export default function BorderFrame() {
   return (
-    <div className="fixed inset-0 pointer-events-none z-50">
+    <div className="hidden md:block fixed inset-0 pointer-events-none z-50">
       <div
-        className="absolute inset-0 border-2 md:border-3 lg:border-4 border-[#ea580b]"
+        className="absolute border-[20px] border-[#ea580b]"
         style={{
-          animation: "pulse-border 3s ease-in-out infinite"
+          animation: "pulse-border 3s ease-in-out infinite",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh',
+          boxSizing: 'border-box'
         }}
       />
     </div>

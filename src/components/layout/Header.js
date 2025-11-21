@@ -13,7 +13,7 @@ export default function Header({ onBetaAccessClick }) {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-[#0a0a0a]/80 border-b border-[#262626]">
+    <header className="fixed top-0 md:top-8 left-0 right-0 md:left-8 md:right-8 z-40 backdrop-blur-md bg-[#0a0a0a]/80 border-b border-[#262626]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -48,7 +48,7 @@ export default function Header({ onBetaAccessClick }) {
               Install
             </a>
             <a
-              href="https://github.com/quantumgrid/os"
+              href="https://github.com/saralsystems/quantumgridos"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#a3a3a3] hover:text-white transition-colors"
@@ -66,10 +66,10 @@ export default function Header({ onBetaAccessClick }) {
               trackingEvent={{
                 action: 'click',
                 category: 'conversion',
-                label: 'Request Beta Access - Header',
+                label: 'Enterprise Pilot - Header',
               }}
             >
-              Request Beta Access
+              Enterprise Pilot
             </Button>
           </div>
 
@@ -130,7 +130,7 @@ export default function Header({ onBetaAccessClick }) {
                 Install
               </a>
               <a
-                href="https://github.com/quantumgrid/os"
+                href="https://github.com/saralsystems/quantumgridos"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#a3a3a3] hover:text-white transition-colors"
@@ -148,10 +148,10 @@ export default function Header({ onBetaAccessClick }) {
                 trackingEvent={{
                   action: 'click',
                   category: 'conversion',
-                  label: 'Request Beta Access - Mobile Menu',
+                  label: 'Enterprise Pilot - Mobile Menu',
                 }}
               >
-                Request Beta Access
+                Enterprise Pilot
               </Button>
             </nav>
           </div>
