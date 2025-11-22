@@ -29,7 +29,7 @@ export default function Solution() {
               The Missing Integration Layer
             </h2>
             <p className="text-lg text-[#a3a3a3] max-w-3xl mx-auto">
-              QuantumGrid OS bridges quantum processors and power system hardware. Built on R&D 100 Award-finalist research.
+              QuantumGrid OS bridges quantum processors and power system hardware.
             </p>
           </div>
         </FadeInSection>
@@ -37,11 +37,15 @@ export default function Solution() {
         {/* Architecture Diagram */}
         <FadeInSection delay={200}>
           <div className="mb-12 flex items-center justify-center">
-            <div className="flex items-center space-x-4 text-center">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-4 text-center">
               <ArchBox label="Quantum" />
-              <Arrow />
+              <div className="transform rotate-90 lg:rotate-0">
+                <Arrow />
+              </div>
               <ArchBox label="QuantumGrid OS" primary />
-              <Arrow />
+              <div className="transform rotate-90 lg:rotate-0">
+                <Arrow />
+              </div>
               <ArchBox label="Your Systems" />
             </div>
           </div>

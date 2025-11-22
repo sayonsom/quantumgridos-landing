@@ -22,11 +22,10 @@ export default function Footer() {
       { name: "Webinars", href: "#webinars" },
       { name: "Case Studies", href: "#cases" }
     ],
-    Company: [
-      { name: "About", href: "#about" },
-      { name: "Contact", href: "#contact" },
-      { name: "Privacy", href: "#privacy" },
-      { name: "Terms", href: "#terms" }
+"Built by Saral Systems": [
+      { name: "About", href: "https://saralsystems.co/about" },
+      { name: "Contact: sc@saralsystems.co", href: "mailto:sc@saralsystems.co" },
+      { name: "Made in Calcutta, India", href: null }
     ]
   };
 
@@ -41,15 +40,19 @@ export default function Footer() {
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="text-[#a3a3a3] hover:text-white transition-colors text-sm"
-                      target={link.href.startsWith("http") ? "_blank" : undefined}
-                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      onClick={link.name === "GitHub" ? () => conversions.githubClick('Footer Links') : undefined}
-                    >
-                      {link.name}
-                    </a>
+                    {link.href ? (
+                      <a
+                        href={link.href}
+                        className="text-[#a3a3a3] hover:text-white transition-colors text-sm"
+                        target={link.href.startsWith("http") ? "_blank" : undefined}
+                        rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        onClick={link.name === "GitHub" ? () => conversions.githubClick('Footer Links') : undefined}
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <span className="text-[#a3a3a3] text-sm">{link.name}</span>
+                    )}
                   </li>
                 ))}
               </ul>

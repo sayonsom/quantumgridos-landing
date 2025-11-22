@@ -13,7 +13,7 @@ export default function Header({ onBetaAccessClick }) {
   };
 
   return (
-    <header className="fixed top-0 md:top-8 left-0 right-0 md:left-8 md:right-8 z-40 backdrop-blur-md bg-[#0a0a0a]/80 border-b border-[#262626]">
+    <header className="fixed top-4 left-4 right-4 md:top-8 md:left-16 md:right-16 z-40 backdrop-blur-xl bg-[#0a0a0a]/70 rounded-2xl border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
