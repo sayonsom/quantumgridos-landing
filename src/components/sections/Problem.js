@@ -10,19 +10,19 @@ export default function Problem() {
     {
       title: "Exponential Scale",
       description: "Millions of DERs create optimization problems classical computers cannot solve efficiently.",
-      stat: "10,000+",
+      stat: "100 M+",
       statLabel: "devices"
     },
     {
       title: "Real-Time Demands",
       description: "Sub-second decisions required across exponentially growing device combinations.",
-      stat: "10⁶",
-      statLabel: "combinations"
+      stat: "1,000+",
+      statLabel: "grid states"
     },
     {
       title: "Legacy Systems",
       description: "New solutions must integrate with existing SCADA, historians, and simulators.",
-      stat: "<100ms",
+      stat: "<90ms",
       statLabel: "windows"
     }
   ];

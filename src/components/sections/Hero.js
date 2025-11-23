@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Button from "../ui/Button";
 import { event } from "../../lib/analytics";
 
 export default function Hero() {
@@ -32,17 +31,22 @@ export default function Hero() {
             {/* Installation Command */}
             <div className="flex flex-col items-center gap-4">
               <InstallCommand command="pip install quantumgridos" />
-              <Button
-                variant="secondary"
-                onClick={() => window.open("https://saralsystems.github.io/quantumgridos/", "_blank")}
-                trackingEvent={{
-                  action: 'click',
-                  category: 'engagement',
-                  label: 'View Documentation - Hero',
-                }}
-              >
-                View Documentation
-              </Button>
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-[#a3a3a3]">Supports Python 3.9, 3.10 and 3.11 only.</span>
+                <a
+                  href="https://saralsystems.github.io/quantumgridos/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#ea580b] hover:text-[#f97316] underline transition-colors"
+                  onClick={() => event({
+                    action: 'click',
+                    category: 'engagement',
+                    label: 'View Documentation - Hero',
+                  })}
+                >
+                  View Documentation
+                </a>
+              </div>
             </div>
 
             {/* Supported Platforms */}
