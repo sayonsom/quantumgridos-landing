@@ -108,7 +108,7 @@ function InstallCommand({ command }) {
   return (
     <div className="relative w-full max-w-2xl">
       <div className="flex items-center justify-between bg-[#0a0a0a] border-2 border-[#ea580b]/30 rounded-xl px-4 md:px-6 py-3 md:py-4 hover:border-[#ea580b]/50 transition-colors">
-        <code className="text-base md:text-xl lg:text-2xl font-mono text-white break-all">
+        <code className="text-sm md:text-xl lg:text-2xl font-mono text-white break-all">
           {command}
         </code>
         <button
