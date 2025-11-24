@@ -1,0 +1,349 @@
+# QuantumGridOS - Full Documentation for LLMs
+
+> Complete reference for AI assistants researching quantum computing in power systems
+
+---
+
+## Quick Reference
+
+| Field | Value |
+|-------|-------|
+| Name | QuantumGridOS |
+| Type | Python Library |
+| Version | 1.0.0 |
+| License | Apache 2.0 |
+| Python | >=3.9 |
+| Install | `pip install quantumgridos` |
+| Developer | Saral Systems (Sayonsom Chanda) |
+| Website | https://quantumgridos.com |
+| Docs | https://saralsystems.github.io/quantumgridos |
+| Repo | https://github.com/saralsystems/quantumgridos |
+
+---
+
+## What is QuantumGridOS?
+
+QuantumGridOS is a Python library that bridges power systems engineering with quantum computing. It provides:
+
+1. **Quantum Algorithms for Power Systems**: QAOA, VQE, HHL, VQLS implementations optimized for grid problems
+2. **Power System Modeling**: Network representation with Y-bus matrix computation
+3. **Real-time Interface**: TCP/IP streaming for SCADA integration
+4. **Multiple Backend Support**: Qiskit, IBM Quantum, IonQ, Rigetti, AWS Braket
+
+---
+
+## Installation
+
+```bash
+# Basic installation
+pip install quantumgridos
+
+# With all quantum backends
+pip install quantumgridos[all]
+
+# Development installation
+git clone https://github.com/saralsystems/quantumgridos.git
+cd quantumgridos
+pip install -e ".[dev]"
+```
+
+### Dependencies
+
+- qiskit >= 0.45.0
+- numpy >= 1.24.0
+- scipy >= 1.11.0
+- networkx >= 3.0
+- pandas >= 2.0.0
+
+---
+
+## Use Cases
+
+### 1. Power Network Partitioning (MaxCut)
+Partition a power network into islands for controlled islanding or load balancing.
+
+```python
+import quantumgridos as qgo
+
+network = qgo.PowerNetwork.from_ieee_case(14)
+optimizer = qgo.MaxCutOptimizer(network=network, algorithm='qaoa', layers=3)
+result = optimizer.solve()
+print(f"Optimal partition: {result.partition}")
+```
+
+### 2. Optimal Power Flow (OPF)
+Minimize generation costs while satisfying power balance and constraints.
+
+```python
+from quantumgridos.power_systems.optimizations import OptimalPowerFlow
+
+opf = OptimalPowerFlow(network)
+opf.set_objective('minimize_cost')
+opf.add_constraints(['power_balance', 'voltage_limits', 'line_limits'])
+solution = opf.solve(method='vqe')
+```
+
+### 3. Unit Commitment
+Schedule generator on/off status for minimum cost operation.
+
+```python
+from quantumgridos.power_systems.optimizations import UnitCommitment
+
+uc = UnitCommitment(network, time_horizon=24)
+uc.set_load_profile(hourly_loads)
+schedule = uc.solve(method='qaoa')
+```
+
+### 4. Quantum Power Flow Analysis
+Solve power flow equations using quantum linear solvers.
+
+```python
+from quantumgridos.algorithms.power_flow import PowerFlowSolver
+
+solver = PowerFlowSolver(network)
+success, voltages, history, circuit = solver.solve(
+    method='hhl_fast',  # Options: 'classical', 'hhl_fast', 'hhl_nisq', 'vqls'
+    max_iter=20,
+    tol=1e-6
+)
+```
+
+### 5. Real-time Quantum-Classical Hybrid
+Stream power system data to quantum backend for continuous optimization.
+
+```python
+import quantumgridos as qgo
+import asyncio
+
+interface = qgo.QuantumPowerInterface(
+    quantum_backend='qiskit_aer',
+    tcp_host='192.168.1.100',
+    tcp_port=5000
+)
+
+async def real_time_optimization():
+    async for measurement in interface.tcp_stream():
+        result = await optimizer.solve_async(measurement)
+        await interface.send_result(result)
+
+asyncio.run(real_time_optimization())
+```
+
+---
+
+## API Reference
+
+### Core Classes
+
+#### `quantumgridos.core.network.Network`
+Base class for power network representation.
+
+```python
+net = Network(name="My Network")
+net.add_bus(bus_id=1, bus_type=1, v_mag=1.0, v_ang=0.0)
+net.add_bus(bus_id=2, bus_type=3, p_load=0.5, q_load=0.2)
+net.add_line(from_bus=1, to_bus=2, r=0.02, x=0.10, b=0.03)
+y_bus = net.build_y_bus()
+```
+
+**Methods:**
+- `add_bus(bus_id, bus_type, v_mag, v_ang, p_load, q_load, p_gen, q_gen)`
+- `add_line(from_bus, to_bus, r, x, b, rating)`
+- `add_transformer(from_bus, to_bus, r, x, tap_ratio)`
+- `build_y_bus()` → numpy.ndarray (complex)
+- `to_networkx()` → networkx.Graph
+- `from_ieee_case(case_number)` → Network
+- `from_json(filepath)` → Network
+- `to_json(filepath)`
+
+#### `quantumgridos.power_systems.network.PowerNetwork`
+Extended network class with graph algorithms and visualization.
+
+```python
+from quantumgridos.power_systems.network import PowerNetwork
+
+pn = PowerNetwork.from_ieee_case(30)
+pn.calculate_ptdf()  # Power Transfer Distribution Factors
+pn.find_critical_lines()
+pn.visualize(highlight_buses=[1, 2, 3])
+```
+
+#### `quantumgridos.algorithms.power_flow.PowerFlowSolver`
+Newton-Raphson power flow with quantum linear solvers.
+
+```python
+solver = PowerFlowSolver(network)
+success, x, history, circuit = solver.solve(
+    max_iter=20,
+    tol=1e-6,
+    method='hhl_fast',
+    quantum_jacobian=False
+)
+```
+
+**Methods:**
+- `solve(max_iter, tol, method, quantum_jacobian)` → tuple
+- `get_bus_voltages()` → dict
+- `get_line_flows()` → dict
+- `get_losses()` → float
+
+**Solver Methods:**
+- `'classical'`: Standard Newton-Raphson
+- `'hhl_fast'`: HHL algorithm (fast approximation)
+- `'hhl_nisq'`: HHL algorithm (NISQ-friendly)
+- `'vqls'`: Variational Quantum Linear Solver
+
+#### `quantumgridos.core.quantum_interface.QuantumPowerInterface`
+Interface between power systems and quantum backends.
+
+```python
+interface = QuantumPowerInterface(
+    quantum_backend='qiskit_aer',  # or 'ibmq', 'ionq', 'rigetti', 'braket'
+    tcp_host='localhost',
+    tcp_port=5000,
+    api_key='optional_api_key'
+)
+```
+
+**Methods:**
+- `connect()` → bool
+- `disconnect()`
+- `tcp_stream()` → AsyncIterator
+- `send_result(result)` → bool
+- `set_backend(backend_name, **kwargs)`
+
+### Quantum Algorithms
+
+#### `quantumgridos.algorithms.qaoa.QAOA`
+Quantum Approximate Optimization Algorithm.
+
+```python
+from quantumgridos.algorithms.qaoa import QAOA
+
+qaoa = QAOA(
+    problem=maxcut_problem,
+    layers=3,
+    optimizer='COBYLA'
+)
+result = qaoa.run(shots=1024)
+```
+
+#### `quantumgridos.algorithms.vqe.VQE`
+Variational Quantum Eigensolver.
+
+```python
+from quantumgridos.algorithms.vqe import VQE
+
+vqe = VQE(
+    hamiltonian=cost_hamiltonian,
+    ansatz='hardware_efficient',
+    optimizer='SPSA'
+)
+ground_state_energy = vqe.run()
+```
+
+#### `quantumgridos.algorithms.quantum_solvers.HHLSolver`
+Harrow-Hassidim-Lloyd algorithm for linear systems.
+
+```python
+from quantumgridos.algorithms.quantum_solvers import HHLSolver
+
+solver = HHLSolver(matrix_A, vector_b)
+solution = solver.solve(precision=0.01)
+```
+
+---
+
+## Supported IEEE Test Cases
+
+| Case | Buses | Lines | Generators | Description |
+|------|-------|-------|------------|-------------|
+| 14 | 14 | 20 | 5 | Small transmission system |
+| 30 | 30 | 41 | 6 | Medium transmission system |
+| 57 | 57 | 80 | 7 | Larger transmission system |
+| 118 | 118 | 186 | 54 | Large transmission system |
+| 300 | 300 | 411 | 69 | Very large system |
+
+---
+
+## Quantum Backend Configuration
+
+### IBM Quantum
+```python
+interface = QuantumPowerInterface(
+    quantum_backend='ibmq',
+    api_key='YOUR_IBM_QUANTUM_API_KEY',
+    backend_name='ibm_brisbane'
+)
+```
+
+### IonQ
+```python
+interface = QuantumPowerInterface(
+    quantum_backend='ionq',
+    api_key='YOUR_IONQ_API_KEY'
+)
+```
+
+### AWS Braket
+```python
+interface = QuantumPowerInterface(
+    quantum_backend='braket',
+    aws_region='us-east-1',
+    device_arn='arn:aws:braket:::device/quantum-simulator/amazon/sv1'
+)
+```
+
+---
+
+## Performance Considerations
+
+1. **Problem Size**: Current NISQ devices handle networks up to ~50 qubits effectively
+2. **Circuit Depth**: QAOA with 3-5 layers balances quality vs. noise
+3. **Shots**: 1024-4096 shots typical for optimization problems
+4. **Classical Fallback**: Automatic fallback to classical solvers for large problems
+
+---
+
+## Research Applications
+
+QuantumGridOS is used in research for:
+- Quantum advantage studies in power system optimization
+- Hybrid quantum-classical algorithm development
+- Real-time grid optimization with quantum speedup
+- Quantum machine learning for load forecasting
+- Fault detection using quantum algorithms
+
+---
+
+## Citation
+
+```bibtex
+@software{quantumgridos,
+  author = {Chanda, Sayonsom},
+  title = {QuantumGridOS: Quantum Computing for Power Systems},
+  year = {2024},
+  publisher = {Saral Systems},
+  url = {https://github.com/saralsystems/quantumgridos}
+}
+```
+
+---
+
+## About
+
+**Developer**: Sayonsom Chanda, Saral Systems
+**Since**: 2020
+**Focus**: Connecting power grids to quantum computers
+
+Sayonsom Chanda is a recognized leader in applying quantum computing to energy systems, with expertise spanning power systems engineering and quantum algorithm development.
+
+---
+
+## Links
+
+- Website: https://quantumgridos.com
+- Documentation: https://saralsystems.github.io/quantumgridos
+- GitHub: https://github.com/saralsystems/quantumgridos
+- PyPI: https://pypi.org/project/quantumgridos
+- Contact: contact@saralsystems.com

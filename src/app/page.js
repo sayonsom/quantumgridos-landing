@@ -15,6 +15,7 @@ import Tech from "../components/sections/Tech";
 import POC from "../components/sections/POC";
 import Install from "../components/sections/Install";
 import FAQ from "../components/sections/FAQ";
+import Citation from "../components/sections/Citation";
 import BetaAccessModal from "../components/ui/BetaAccessModal";
 import QuantumAnimation from "../components/ui/QuantumAnimation";
 
@@ -38,6 +39,7 @@ export default function Home() {
         <Tech />
         <POC onBetaAccessClick={() => setShowBetaModal(true)} />
         <Install />
+        <Citation />
         <FAQ />
       </main>
 
