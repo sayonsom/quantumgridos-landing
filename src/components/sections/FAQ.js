@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import AnimatedElement from "../ui/AnimatedElement";
+import Icon from "../ui/Icon";
 
 export default function FAQ() {
   const faqs = [
@@ -56,41 +58,61 @@ export default function FAQ() {
     <section className="py-24">
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <AnimatedElement animation="fade-slide-in" className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Questions from Engineers
           </h2>
-        </div>
+        </AnimatedElement>
 
         {/* FAQ List */}
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div
+            <AnimatedElement
               key={index}
-              className="bg-[#111111] border border-[#262626] rounded-xl overflow-hidden transition-all hover:border-[#ea580b]/50"
+              animation="blur-slide-in"
+              delay={index * 50}
             >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 flex items-center justify-between text-left"
+              <div
+                className="relative group rounded-xl p-[1px] transition-all duration-300"
               >
-                <span className="text-white font-semibold">{faq.question}</span>
-                <svg
-                  className={`w-5 h-5 text-[#ea580b] transition-transform ${
-                    openIndex === index ? "transform rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {openIndex === index && (
-                <div className="px-6 pb-4">
-                  <p className="text-[#a3a3a3] leading-relaxed">{faq.answer}</p>
+                {/* Border glow on hover */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#ea580b]/0 via-[#ea580b]/0 to-[#ea580b]/0 group-hover:from-[#ea580b]/20 group-hover:via-[#ea580b]/40 group-hover:to-[#ea580b]/20 transition-all duration-300" />
+
+                {/* Static border */}
+                <div className="absolute inset-0 rounded-xl bg-[#262626]/50" />
+
+                {/* Content */}
+                <div className="relative rounded-xl bg-[#111111]/80 backdrop-blur-xl border border-white/[0.05] overflow-hidden">
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left"
+                  >
+                    <span className="text-white font-semibold flex items-center gap-3">
+                      <Icon
+                        name="solar:question-circle-bold-duotone"
+                        size={20}
+                        className="text-[#ea580b]"
+                      />
+                      {faq.question}
+                    </span>
+                    <Icon
+                      name={openIndex === index ? "solar:alt-arrow-up-bold-duotone" : "solar:alt-arrow-down-bold-duotone"}
+                      size={20}
+                      className="text-[#ea580b] transition-transform"
+                    />
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      openIndex === index ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="px-6 pb-4 pl-14">
+                      <p className="text-[#a3a3a3] leading-relaxed">{faq.answer}</p>
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
+              </div>
+            </AnimatedElement>
           ))}
         </div>
       </div>

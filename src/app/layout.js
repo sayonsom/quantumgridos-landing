@@ -126,6 +126,11 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Iconify */}
+        <Script
+          strategy="beforeInteractive"
+          src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"
+        />
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
