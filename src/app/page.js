@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import BorderFrame from "../components/layout/BorderFrame";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Hero from "../components/sections/Hero";
@@ -24,7 +23,6 @@ export default function Home() {
 
   return (
     <>
-      <BorderFrame />
       <Header onBetaAccessClick={() => setShowBetaModal(true)} />
 
       <main className="px-4 py-4 md:px-8 md:py-6">

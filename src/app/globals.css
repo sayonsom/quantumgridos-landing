@@ -28,12 +28,18 @@ body {
 }
 
 /* Modern font weight utilities */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-p, .subtitle {
+p,
+.subtitle {
   font-weight: 300;
 }
 
@@ -47,6 +53,7 @@ p, .subtitle {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -57,15 +64,19 @@ p, .subtitle {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 @keyframes pulse-border {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.8;
   }
@@ -75,12 +86,46 @@ p, .subtitle {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
+}
+
+@keyframes blob-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.animate-blob-pulse {
+  animation: blob-pulse 8s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
 }
 
 /* Scroll animation utilities */
@@ -109,7 +154,7 @@ p, .subtitle {
   opacity: 0;
   transform: translateY(60px) scale(0.95);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .float-up.visible {
@@ -123,6 +168,7 @@ p, .subtitle {
     filter: blur(12px);
     transform: translateY(24px) scale(0.96);
   }
+
   100% {
     filter: blur(0);
     transform: translateY(0) scale(1);
@@ -134,6 +180,7 @@ p, .subtitle {
     filter: blur(8px) brightness(0.8);
     transform: translateY(20px);
   }
+
   100% {
     filter: blur(0) brightness(1);
     transform: translateY(0);
@@ -145,6 +192,7 @@ p, .subtitle {
     filter: blur(6px);
     transform: translateX(-30px);
   }
+
   100% {
     filter: blur(0);
     transform: translateX(0);
@@ -156,6 +204,7 @@ p, .subtitle {
     filter: blur(6px);
     transform: translateX(30px);
   }
+
   100% {
     filter: blur(0);
     transform: translateX(0);
@@ -167,6 +216,7 @@ p, .subtitle {
     filter: blur(10px);
     transform: scale(0.9);
   }
+
   100% {
     filter: blur(0);
     transform: scale(1);
@@ -174,9 +224,12 @@ p, .subtitle {
 }
 
 @keyframes glowPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(234, 88, 11, 0.1);
   }
+
   50% {
     box-shadow: 0 0 30px rgba(234, 88, 11, 0.2);
   }
@@ -208,14 +261,37 @@ p, .subtitle {
 }
 
 /* Stagger delay utilities */
-.stagger-1 { animation-delay: 50ms; }
-.stagger-2 { animation-delay: 100ms; }
-.stagger-3 { animation-delay: 150ms; }
-.stagger-4 { animation-delay: 200ms; }
-.stagger-5 { animation-delay: 250ms; }
-.stagger-6 { animation-delay: 300ms; }
-.stagger-7 { animation-delay: 350ms; }
-.stagger-8 { animation-delay: 400ms; }
+.stagger-1 {
+  animation-delay: 50ms;
+}
+
+.stagger-2 {
+  animation-delay: 100ms;
+}
+
+.stagger-3 {
+  animation-delay: 150ms;
+}
+
+.stagger-4 {
+  animation-delay: 200ms;
+}
+
+.stagger-5 {
+  animation-delay: 250ms;
+}
+
+.stagger-6 {
+  animation-delay: 300ms;
+}
+
+.stagger-7 {
+  animation-delay: 350ms;
+}
+
+.stagger-8 {
+  animation-delay: 400ms;
+}
 
 /* Intersection observer trigger - start animation when visible */
 .animate-on-scroll {
