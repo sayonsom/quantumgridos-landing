@@ -13,36 +13,36 @@ export default function Header({ onBetaAccessClick }) {
   };
 
   return (
-    <header className="fixed top-4 left-4 right-4 md:top-8 md:left-16 md:right-16 z-40 backdrop-blur-xl bg-[#0a0a0a]/70 rounded-2xl border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
+    <header className="fixed top-4 left-4 right-4 md:top-6 md:left-32 md:right-32 z-40 backdrop-blur-xl bg-[#0a0a0a]/70 rounded-2xl border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#ea580b] to-[#dc2626] rounded-lg flex items-center justify-center">
+            <div className="w-7 h-7 bg-gradient-to-br from-[#ea580b] to-[#dc2626] rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">Q</span>
             </div>
-            <span className="text-white font-bold text-xl">QuantumGrid OS</span>
+            <span className="text-white font-bold text-lg">QuantumGrid OS</span>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             <a
               href="#solution"
-              className="text-[#a3a3a3] hover:text-white transition-colors"
+              className="text-sm text-[#a3a3a3] hover:text-white transition-colors"
               onClick={() => handleNavClick('Solution')}
             >
               Solution
             </a>
             <a
               href="#use-cases"
-              className="text-[#a3a3a3] hover:text-white transition-colors"
+              className="text-sm text-[#a3a3a3] hover:text-white transition-colors"
               onClick={() => handleNavClick('Use Cases')}
             >
               Use Cases
             </a>
             <a
               href="#install"
-              className="text-[#a3a3a3] hover:text-white transition-colors"
+              className="text-sm text-[#a3a3a3] hover:text-white transition-colors"
               onClick={() => handleNavClick('Install')}
             >
               Install
@@ -51,7 +51,7 @@ export default function Header({ onBetaAccessClick }) {
               href="https://github.com/saralsystems/quantumgridos"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#a3a3a3] hover:text-white transition-colors"
+              className="text-sm text-[#a3a3a3] hover:text-white transition-colors"
               onClick={() => conversions.githubClick('Header')}
             >
               GitHub
@@ -62,6 +62,7 @@ export default function Header({ onBetaAccessClick }) {
           <div className="hidden md:block">
             <Button
               variant="primary"
+              size="sm"
               onClick={onBetaAccessClick}
               trackingEvent={{
                 action: 'click',

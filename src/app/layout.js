@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 import SaralBadge from "@/components/ui/SaralBadge";
+import MouseTracker from "@/components/MouseTracker";
 
 const visualSans = localFont({
   src: "../../public/WFVisualSansVF.woff2",
@@ -150,6 +151,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${visualSans.variable} antialiased`}>
+        <MouseTracker />
         {children}
         <SaralBadge />
       </body>

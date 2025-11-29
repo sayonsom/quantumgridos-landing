@@ -4,6 +4,8 @@
   --background: #0a0a0a;
   --foreground: #ffffff;
   --primary: #ea580b;
+  --mouse-x: 50vw;
+  --mouse-y: 50vh;
 }
 
 @theme inline {
@@ -18,13 +20,45 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-visual-sans), sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   width: 100%;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Background Effects */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(circle at center,
+      rgba(10, 10, 10, 0.8) 0%,
+      rgba(0, 0, 0, 1) 100%);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(to right,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle 250px at var(--mouse-x) var(--mouse-y),
+      black,
+      transparent);
+  -webkit-mask-image: radial-gradient(circle 250px at var(--mouse-x) var(--mouse-y),
+      black,
+      transparent);
+  pointer-events: none;
 }
 
 /* Modern font weight utilities */
@@ -36,6 +70,27 @@ h5,
 h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+h1,
+h2 {
+  position: relative;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: radial-gradient(circle 150px at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 1) 0%,
+      transparent 100%),
+    radial-gradient(circle at center, #a0a0a0, #505050);
+  background-size: 100% 100%, 100% 100%;
+  background-position: 0 0, 0 0;
+  background-attachment: fixed, scroll;
+  transition: text-shadow 0.2s ease;
+}
+
+h1:hover,
+h2:hover {
+  text-shadow: calc((var(--mouse-x) - 50vw) * 0.02) calc((var(--mouse-y) - 50vh) * 0.02) 10px rgba(255, 255, 255, 0.1);
 }
 
 p,

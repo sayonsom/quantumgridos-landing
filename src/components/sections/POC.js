@@ -78,7 +78,7 @@ export default function POC({ onBetaAccessClick }) {
         {/* Requirements */}
         <div className="bg-gradient-to-r from-[#ea580b]/10 to-[#dc2626]/10 border border-[#ea580b]/30 rounded-xl p-6 text-center">
           <p className="text-[#a3a3a3] leading-relaxed">
-            Access to real-time simulator, defined problem, engineering commitment (2-3 people, 3-6 months).
+            We are looking to work with free pilot project with Electric and Gas utilities with an engineering commitment (1-2 people, 3-6 months).
           </p>
         </div>
       </div>
